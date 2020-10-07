@@ -20,7 +20,7 @@
 				<div class="card-footer">
 					<div class="stats">
 						<i class="material-icons text-info">info</i>
-						<a href="#pablo">Lihat Selengkapnya</a>
+						<a href="{{ route('lkamar') }}">Lihat Selengkapnya</a>
 					</div>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 				<div class="card-footer">
 					<div class="stats">
 						<i class="material-icons text-info">info</i>
-						<a href="#pablo">Lihat Selengkapnya</a>
+						<a href="{{ route('lkamar') }}">Lihat Selengkapnya</a>
 					</div>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 				<div class="card-footer">
 					<div class="stats">
 						<i class="material-icons text-info">info</i>
-						<a href="#pablo">Lihat Selengkapnya</a>
+						<a href="{{ route('lkamar') }}">Lihat Selengkapnya</a>
 					</div>
 				</div>
 			</div>

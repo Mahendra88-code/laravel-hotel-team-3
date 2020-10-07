@@ -15,19 +15,20 @@
 					<h4 class="card-title">Kategori Kamar</h4>
 				</div>
 				<div class="card-body ">
-					<form>	
-						<div class="row">
-							<div class="col-md-3">
-								<input class="form-control datepicker" type="text" placeholder="Dari Tanggal" name="first" id="first">
-							</div>
-							<div class="col-md-3">
-								<input class="form-control datepicker" type="text" placeholder="Sampai Tanggal" name="second" id="second">
-							</div>
-							<div class="col-md-3">
-								<button class="btn btn-success float-right"> Lihat Laporan </button>
-							</div>
+					<div class="row">
+						<div class="col-md-3">
+							<input class="form-control" type="date" placeholder="Dari Tanggal" name="dari_tanggal" id="dari_tanggal"  autocomplete="off">
 						</div>
-					</form>
+						<div class="col-md-3">
+							<input class="form-control" type="date" placeholder="Sampai Tanggal" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
+						</div>
+						<div class="col-md-3">
+							<button onclick="getTanggal()" class="btn btn-success"> Lihat Laporan </button>
+						</div>
+					</div>
+					<div id="datas">
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -37,6 +38,27 @@
 @endsection
 @section('js')
 <script>
-	
+
+	function getTanggal() {
+		event.preventDefault();
+		$a = $('#dari_tanggal').val();
+		$b = $('#sampai_tanggal').val();
+
+		$.ajax({
+			url : "{{route('getTKamar')}}",
+			method : 'get',
+			dataType :'html',
+			data: {
+				dari_tanggal: $a,
+				sampai_tanggal: $b
+			},
+			success:function(data) {
+				console.log(data);
+				$('#datatables').DataTable();
+				$('#datas').html(data);
+				$('#datatables').DataTable('refresh');
+			}
+		})
+	}
 </script>
 @endsection

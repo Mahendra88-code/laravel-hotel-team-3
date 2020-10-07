@@ -93,30 +93,6 @@ class Hotel extends Model
 		return $statement->fetchAll(PDO::FETCH_OBJ);
 	}
 
-	public function getTransKamar()
-	{
-		$pdo = DB::getPdo();
-
-		$sql = "SELECT * FROM transaksi_kamar as trans JOIN user ON trans.id_user = user.id_user JOIN tamu ON trans.id_tamu = tamu.id_tamu JOIN kamar ON trans.id_kamar = kamar.id_kamar ";
-
-		$statement = $pdo->prepare($sql);
-		$statement->execute();
-
-		return $statement->fetchAll(PDO::FETCH_OBJ);
-	}
-
-	public function getTransLayanan()
-	{
-		$pdo = DB::getPdo();
-
-		$sql = "SELECT * FROM transaksi_layanan as trans JOIN user ON trans.id_user = user.id_user JOIN transaksi_kamar as tkamar ON trans.id_transaksi_kamar = tkamar.id_transaksi_kamar JOIN layanan ON trans.id_layanan = layanan.id_layanan_kategori ";
-
-		$statement = $pdo->prepare($sql);
-		$statement->execute();
-
-		return $statement->fetchAll(PDO::FETCH_OBJ);
-	}
-
 	public function getUser()
 	{
 		$pdo = DB::getPdo();
