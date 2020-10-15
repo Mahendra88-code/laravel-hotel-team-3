@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,8 @@ class DashboardController extends Controller
     	$data['tersedia'] = $hotel->getTersedia();
     	$data['terpakai'] = $hotel->getTerpakai();
     	$data['kotor'] = $hotel->getKotor();
+    	$data['inhouse'] = $hotel->getInHouse();
+    	$data['outnow'] = $hotel->getOutNow();
 
     	return view('pages.dashboard', $data);
     }

@@ -3,6 +3,7 @@
 @section('show-kamar', 'active')
 @section('active-tkamar','active')
 @section('title-navbar','Kamar')
+@section('title','TIPE KAMAR')
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -16,7 +17,7 @@
 					<button class="btn btn-success float-right" data-toggle="modal" data-target="#addTipe"> <i class="material-icons">add</i> Tambah Tipe </button>
 				</div>
 				<div class="card-body ">
-					<table id="datatables" class="table table-hover table-bordered">
+					<table id="datatables" class="table table-hover table-bordered table-striped">
 						<thead>
 							<tr>
 								<th hidden></th>
@@ -27,23 +28,25 @@
 								<th>Action</th>
 							</tr>
 						</thead>
-						@foreach($tkamar as $val)
 						<tbody>
-							<td hidden></td>
-							<td>{{ $val->nama_kamar_tipe }}</td>
-							<td>Rp. {{ number_format($val->harga_malam, 2, ',', '.') }}</td>
-							<td>Rp. {{ number_format($val->harga_orang, 2, ',', '.') }}</td>
-							<td>{{ $val->keterangan }}</td>
-							<td>
-								<button onclick="get_tipe({{ $val->id_kamar_tipe }})" class='btn btn-info btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Update Tipe Kamar" data-toggle="modal" data-target="#editTipe">
-									<i class='material-icons'>edit</i>
-								</button>
-								<button onclick="delete_tipe({{ $val->id_kamar_tipe }})" class='btn btn-danger btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Delete Tipe Kamar">
-									<i class='material-icons'>delete</i>
-								</button>
-							</td>
+							@foreach($tkamar as $val)
+							<tr>
+								<td hidden></td>
+								<td>{{ $val->nama_kamar_tipe }}</td>
+								<td>Rp. {{ number_format($val->harga_malam, 2, ',', '.') }}</td>
+								<td>Rp. {{ number_format($val->harga_orang, 2, ',', '.') }}</td>
+								<td>{{ $val->keterangan }}</td>
+								<td>
+									<button onclick="get_tipe({{ $val->id_kamar_tipe }})" class='btn btn-info btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Update Tipe Kamar" data-toggle="modal" data-target="#editTipe">
+										<i class='material-icons'>edit</i>
+									</button>
+									<button onclick="delete_tipe({{ $val->id_kamar_tipe }})" class='btn btn-danger btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Delete Tipe Kamar">
+										<i class='material-icons'>delete</i>
+									</button>
+								</td>
+							</tr>
+							@endforeach
 						</tbody>
-						@endforeach
 					</table>
 				</div>
 			</div>

@@ -10,23 +10,28 @@ class LihatKamarController extends Controller
 {	
 	public function view() 
 	{
-		$hotel = new Hotel();
-		$data = array();
-		$data['kamar'] = $hotel->getKamar();
-		$data['tipe'] = $hotel->getTKamar();
+		$kamar = DB::table('kamar')
+		->join('kamar_tipe', 'kamar_tipe.id_kamar_tipe', '=', 'kamar.id_kamar_tipe')
+		->get();
 
-		return view('pages.lihatkamar', $data);
+		$tipe = DB::table('kamar_tipe')
+		->get();
+
+		return view('pages.lihatkamar', [
+			'kamar' => $kamar,
+			'tipe' => $tipe
+		]);
 	}
 
 	public function insertKamar(Request $req)
 	{	
 		$insert = DB::table('kamar')
 		->insert([
-			'nomor_kamar' => $req->input('nomor_kamar'),
+			'nomor_kamar' 	=> $req->input('nomor_kamar'),
 			'id_kamar_tipe' => $req->input('select_tipe'),
-			'max_dewasa' => $req->input('select_dewasa'),
-			'max_anak' => $req->input('select_anak'),
-			'status_kamar' => "TERSEDIA"
+			'max_dewasa' 	=> $req->input('select_dewasa'),
+			'max_anak' 		=> $req->input('select_anak'),
+			'status_kamar' 	=> "TERSEDIA"
 		]);
 
 		if($insert){
@@ -65,11 +70,11 @@ class LihatKamarController extends Controller
 		$update=DB::table('kamar')
 		->where('id_kamar',$id)
 		->update([
-			'nomor_kamar' => $req->input('nomor_kamar_edit'),
+			'nomor_kamar' 	=> $req->input('nomor_kamar_edit'),
 			'id_kamar_tipe' => $req->input('select_tipe_edit'),
-			'max_dewasa' => $req->input('select_dewasa_edit'),
-			'max_anak' => $req->input('select_anak_edit'),
-			'status_kamar' => $req->input('select_status_edit')
+			'max_dewasa' 	=> $req->input('select_dewasa_edit'),
+			'max_anak' 		=> $req->input('select_anak_edit'),
+			'status_kamar' 	=> $req->input('select_status_edit')
 		]);
 
 		if($update){

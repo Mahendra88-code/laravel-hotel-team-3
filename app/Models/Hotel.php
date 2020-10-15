@@ -105,11 +105,47 @@ class Hotel extends Model
 		return $statement->fetchAll(PDO::FETCH_OBJ);
 	}
 
+	public function getRole()
+	{
+		$pdo = DB::getPdo();
+
+		$sql = "SELECT * FROM user_role ";
+
+		$statement = $pdo->prepare($sql);
+		$statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_OBJ);
+	}
+
 	public function getTamu()
 	{
 		$pdo = DB::getPdo();
 
 		$sql = "SELECT * FROM tamu ";
+
+		$statement = $pdo->prepare($sql);
+		$statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	public function getInHouse()
+	{
+		$pdo = DB::getPdo();
+
+		$sql = "SELECT * FROM transaksi_kamar INNER JOIN kamar ON kamar.id_kamar = transaksi_kamar.id_kamar INNER JOIN tamu ON tamu.id_tamu = transaksi_kamar.id_tamu WHERE status = 'CHECK IN' ";
+
+		$statement = $pdo->prepare($sql);
+		$statement->execute();
+
+		return $statement->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	public function getOutNow()
+	{
+		$pdo = DB::getPdo();
+
+		$sql = "SELECT * FROM transaksi_kamar INNER JOIN kamar ON kamar.id_kamar = transaksi_kamar.id_kamar INNER JOIN tamu ON tamu.id_tamu = transaksi_kamar.id_tamu WHERE status = 'CHECK IN' AND tanggal_checkout = '".date('Y-m-d')."'";
 
 		$statement = $pdo->prepare($sql);
 		$statement->execute();

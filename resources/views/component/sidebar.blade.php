@@ -1,5 +1,5 @@
 <script src="{{asset('assets/js/core/jquery.min.js')}}"></script> 
-<div class="sidebar" data-color="orange" data-background-color="black" data-image="{{asset('assets/img/sidebar-1.jpg')}}">
+<div class="sidebar" data-color="purple" data-background-color="black" data-image="{{asset('assets/img/sidebar-1.jpg')}}">
  <!-- tip 1: you can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"tip 2: you can also add an image using data-image tag --> 
  <div class="logo"> 
   <a href="" class="simple-text logo-mini"> H </a> 
@@ -7,16 +7,16 @@
 </div> <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1d9eb305-f1eb-ddfb-9b45-c18f312e7051"> 
   <div class="user"> 
     <div class="photo">
-     <img src="{{asset('assets/img/faces/avatar.jpg')}}"> </div> 
+     <img src="{{asset('assets/img/faces/'.session('images'))}}"> </div> 
      <div class="user-info"> 
       <a data-toggle="collapse" href="#collapseexample" class="username"> 
-        <span> DEVELOPER
+        <span> {{session('name')}}
           <b class="caret"></b> 
         </span> 
       </a> 
       <div class="collapse @yield('show-profile')" id="collapseexample">
        <ul class="nav"> 
-        <li class="nav-item @yield('active-profile')">  <a class="nav-link" href=""> <span class="sidebar-mini"> up </span> <span class="sidebar-normal"> user profile </span> </a> 
+        <li class="nav-item @yield('active-profile')">  <a class="nav-link" href="{{route('logout')}}"> <span class="sidebar-mini"> <i class="material-icons"> exit_to_app </i> </span> <span class="sidebar-normal"> Log out </span> </a> 
         </li> 
       </ul> 
     </div> 
@@ -28,15 +28,69 @@
       <i class="material-icons">dashboard</i> 
       <p> Dashboard </p> 
     </a> 
-  </li> 
-  <li class="nav-item @yield('active-kamar')">
+  </li>
+  <li class="nav-item @yield('active-check')">
     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+      <i class="fa fa-key"></i>
+      <p> Check In / Out
+        <b class="caret"></b>
+      </p>
+    </a>
+    <div class="collapse @yield('show-check')" id="pagesExamples">
+      <ul class="nav">
+        <li class="nav-item @yield('active-checkin')">
+          <a class="nav-link" href="{{ route('checkin') }}">
+            <span class="sidebar-mini"> CI </span>
+            <span class="sidebar-normal"> Check In </span>
+          </a>
+        </li>
+        <li class="nav-item @yield('active-checkout')">
+          <a class="nav-link" href="{{route('checkout')}}">
+            <span class="sidebar-mini"> CO </span>
+            <span class="sidebar-normal"> Check Out </span>
+          </a>
+        </li>
+        <li class="nav-item @yield('active-tamuinhouse')">
+          <a class="nav-link" href="{{route('tamuinhouse')}}">
+            <span class="sidebar-mini"> TH </span>
+            <span class="sidebar-normal"> Tamu in House </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li> 
+  <li class="nav-item @yield('active-room')">
+    <a class="nav-link" data-toggle="collapse" href="#pagesExamplesa">
+      <i class="material-icons">book</i>
+      <p> Room Services
+        <b class="caret"></b>
+      </p>
+    </a>
+    <div class="collapse @yield('show-room')" id="pagesExamplesa">
+      <ul class="nav">
+        <li class="nav-item @yield('active-pesanlayanan')">
+          <a class="nav-link" href="{{ route('pesanlayanan') }}">
+            <span class="sidebar-mini"> PL </span>
+            <span class="sidebar-normal"> Pesan Layanan / Produk </span>
+          </a>
+        </li>
+        <li class="nav-item @yield('active-pembersihankamar')">
+          <a class="nav-link" href="{{route('pembersihankamar')}}">
+            <span class="sidebar-mini"> PK </span>
+            <span class="sidebar-normal"> Pembersihan Kamar </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item @yield('active-kamar')">
+    <a class="nav-link" data-toggle="collapse" href="#pagesExamplesw">
       <i class="fa fa-bed"></i>
       <p> Kamar
         <b class="caret"></b>
       </p>
     </a>
-    <div class="collapse @yield('show-kamar')" id="pagesExamples">
+    <div class="collapse @yield('show-kamar')" id="pagesExamplesw">
       <ul class="nav">
         <li class="nav-item @yield('active-lkamar')">
           <a class="nav-link" href="{{ route('lkamar') }}">
@@ -112,7 +166,7 @@
       <i class="material-icons">face</i> 
       <p> User Management </p> 
     </a> 
-  </li> 
+  </li>
 </ul> 
 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"> 
   <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"> 

@@ -1,6 +1,7 @@
 @extends('master')
 @section('active-dashboard','active')
 @section('title-navbar','Dashboard')
+@section('title','DASHBOARD')
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -67,12 +68,79 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-6 col-md-12">
+			<div class="card">
+				<div class="card-header card-header-tabs card-header-primary">
+					<div class="nav-tabs-navigation">
+						<div class="nav-tabs-wrapper">
+							<span class="nav-tabs-title"> <h4 class="mt-auto mb-auto"> Tamu yang sedang menginap </h4></span>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<table class="table table-hover table-striped table-bordered" id="datatables">
+						<thead>
+							<tr>
+								<th hidden></th>
+								<th> Nama Tamu </th>
+								<th> # Kamar </th>
+								<th> Tanggal / Waktu Check In </th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($inhouse as $t)
+							<tr>
+								<td hidden></td>
+								<td> {{ $t->prefix.'. '.$t->nama_depan.' '.$t->nama_belakang }} </td>
+								<td> {{ $t->nomor_kamar }} </td>
+								<td> {{ $t->tanggal_checkin.' / '.$t->waktu_checkin }} </td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-12">
+			<div class="card">
+				<div class="card-header card-header-tabs card-header-rose">
+					<div class="nav-tabs-navigation">
+						<div class="nav-tabs-wrapper">
+							<span class="nav-tabs-title"> <h4 class="mt-auto mb-auto"> Tamu yang akan Check Out hari ini </h4></span>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<table class="table table-hover table-striped table-bordered" id="datatables_1">
+						<thead>
+							<tr>
+								<th hidden></th>
+								<th> Nama Tamu </th>
+								<th> # Kamar </th>
+								<th> Tanggal / Waktu Check In </th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($outnow as $t)
+							<tr>
+								<td hidden></td>
+								<td> {{ $t->prefix.'. '.$t->nama_depan.' '.$t->nama_belakang }} </td>
+								<td> {{ $t->nomor_kamar }} </td>
+								<td> {{ $t->tanggal_checkout.' / '.$t->waktu_checkout }} </td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
 </div>
 </div>	
 @endsection
 @section('js')
 <script>
-	
+
 </script>
 @endsection

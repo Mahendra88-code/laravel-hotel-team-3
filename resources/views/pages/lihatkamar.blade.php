@@ -3,6 +3,7 @@
 @section('show-kamar', 'active')
 @section('active-lkamar','active')
 @section('title-navbar','Kamar')
+@section('title','MASTER KAMAR')
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -18,7 +19,7 @@
 					</button>
 				</div>
 				<div class="card-body ">
-					<table id="datatables" class="table table-hover table-bordered">
+					<table id="datatables" class="table table-hover table-bordered table-striped">
 						<thead>
 							<tr>
 								<th hidden></th>
@@ -31,25 +32,36 @@
 								<th>Action</th>
 							</tr>
 						</thead>
-						@foreach($kamar as $val)
+						<?php $no = 1; ?>
 						<tbody>
-							<td hidden></td>
-							<td>{{ $val->nomor_kamar }}</td>
-							<td>{{ $val->nama_kamar_tipe }}</td>
-							<td>Rp. {{ number_format($val->harga_malam, 2, ',', '.') }}</td>
-							<td>{{ $val->max_dewasa }} Orang</td>
-							<td>{{ $val->max_anak }} Orang</td>
-							<td>{{ $val->status_kamar }}</td>
-							<td>
-								<button onclick="get_kamar({{ $val->id_kamar }})" class='btn btn-info btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Update Kamar" data-toggle="modal" data-target="#editKamar">
-									<i class='material-icons'>edit</i>
-								</button>
-								<button onclick="delete_kamar({{ $val->id_kamar }})" class='btn btn-danger btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Delete Kamar">
-									<i class='material-icons'>delete</i>
-								</button>
-							</td>
+							@foreach($kamar as $val)
+							<tr>
+								<td hidden></td>
+								<td>{{ $val->nomor_kamar }}</td>
+								<td>{{ $val->nama_kamar_tipe }}</td>
+								<td>Rp. {{ number_format($val->harga_malam, 2, ',', '.') }}</td>
+								<td>{{ $val->max_dewasa }} Orang</td>
+								<td>{{ $val->max_anak }} Orang</td>
+								<td class="text-center">
+									@if($val->status_kamar == 'TERSEDIA')
+									<button class="btn btn-success btn-round btn-sm"> {{ $val->status_kamar }} </button>
+									@elseif($val->status_kamar == 'TERPAKAI')
+									<button class="btn btn-danger btn-round btn-sm"> {{ $val->status_kamar }} </button>
+									@else
+									<button class="btn btn-warning btn-round btn-sm"> {{ $val->status_kamar }} </button>
+									@endif
+								</td>
+								<td>
+									<button onclick="get_kamar({{ $val->id_kamar }})" class='btn btn-info btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Update Kamar" data-toggle="modal" data-target="#editKamar">
+										<i class='material-icons'>edit</i>
+									</button>
+									<button onclick="delete_kamar({{ $val->id_kamar }})" class='btn btn-danger btn-sm btn-just-icon btn-round' rel="tooltip" data-original-title="Delete Kamar">
+										<i class='material-icons'>delete</i>
+									</button>
+								</td>
+							</tr>
+							@endforeach
 						</tbody>
-						@endforeach
 					</table>
 				</div>
 			</div>
@@ -85,7 +97,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="fa fa-bed"></i></div>
 									</div>
-									<select name="select_tipe" id="select_tipe" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Tipe Kamar">
+									<select name="select_tipe" id="select_tipe" class="selectpicker w-75" data-live-search="true" data-style="btn btn-success" title="Tipe Kamar">
 										@foreach($tipe as $has)
 										<option value="{{ $has->id_kamar_tipe }}">{{ $has->nama_kamar_tipe }}</option>
 										@endforeach
@@ -97,7 +109,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="material-icons">people</i></div>
 									</div>
-									<select name="select_dewasa" id="select_dewasa" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Max Dewasa">
+									<select name="select_dewasa" id="select_dewasa" class="selectpicker w-75" data-live-search="true" data-style="btn btn-success" title="Max Dewasa">
 										<option value="1">1 Orang</option>
 										<option value="2">2 Orang</option>
 										<option value="3">3 Orang</option>
@@ -111,7 +123,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="material-icons">people</i></div>
 									</div>
-									<select name="select_anak" id="select_anak" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Max Anak-Anak">
+									<select name="select_anak" id="select_anak" class="selectpicker w-75" data-live-search="true" data-style="btn btn-success" title="Max Anak-Anak">
 										<option value="1">1 Orang</option>
 										<option value="2">2 Orang</option>
 										<option value="3">3 Orang</option>
@@ -136,7 +148,7 @@
 		<div class="modal-content">
 			<div class="card card-signup card-plain">
 				<div class="modal-header">
-					<div class="card-header card-header-success text-center">
+					<div class="card-header card-header-info text-center">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 							<i class="material-icons">clear</i>
 						</button>
@@ -147,7 +159,7 @@
 					<form class="form" method="post" id="edit_kamar">
 						{{csrf_field()}}  
 						<div class="card-body">
-							<input type="hidden" name="id_edit" id="id_edit">
+							<input type="text" hidden="hidden" name="id_edit" id="id_edit">
 							<div class="form-group bmd-form-group">
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -161,7 +173,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="fa fa-bed"></i></div>
 									</div>
-									<select name="select_tipe_edit" id="select_tipe_edit" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Tipe Kamar">
+									<select name="select_tipe_edit" id="select_tipe_edit" class="selectpicker w-75" data-live-search="true" data-style="btn btn-info" title="Tipe Kamar">
 										@foreach($tipe as $has)
 										<option value="{{ $has->id_kamar_tipe }}">{{ $has->nama_kamar_tipe }}</option>
 										@endforeach
@@ -173,7 +185,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="material-icons">people</i></div>
 									</div>
-									<select name="select_dewasa_edit" id="select_dewasa_edit" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Max Dewasa">
+									<select name="select_dewasa_edit" id="select_dewasa_edit" class="selectpicker w-75" data-live-search="true" data-style="btn btn-info" title="Max Dewasa">
 										<option value="1">1 Orang</option>
 										<option value="2">2 Orang</option>
 										<option value="3">3 Orang</option>
@@ -187,7 +199,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="material-icons">people</i></div>
 									</div>
-									<select name="select_anak_edit" id="select_anak_edit" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Max Anak-Anak">
+									<select name="select_anak_edit" id="select_anak_edit" class="selectpicker w-75" data-live-search="true" data-style="btn btn-info" title="Max Anak-Anak">
 										<option value="1">1 Orang</option>
 										<option value="2">2 Orang</option>
 										<option value="3">3 Orang</option>
@@ -201,7 +213,7 @@
 									<div class="input-group-prepend">
 										<div class="input-group-text"><i class="fa fa-bed"></i></div>
 									</div>
-									<select name="select_status_edit" id="select_status_edit" class="selectpicker" data-live-search="true" data-style="btn btn-info" title="Status kamar">
+									<select name="select_status_edit" id="select_status_edit" class="selectpicker w-75" data-live-search="true" data-style="btn btn-info" title="Status kamar">
 										<option value="TERSEDIA">TERSEDIA</option>
 										<option value="TERPAKAI">TERPAKAI</option>
 										<option value="KOTOR">KOTOR</option>
@@ -211,13 +223,14 @@
 						</div>                          
 					</div>
 					<div class="modal-footer justify-content-center">
-						<a onclick="edit_kamar()" class="btn btn-success btn-link btn-wd btn-lg">Submit</a>
+						<a onclick="edit_kamar()" class="btn btn-info btn-link btn-wd btn-lg">Submit</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection
 @section('js')
 <script>
@@ -301,7 +314,7 @@
 			type: 'post',
 			success: function (result) {    
 				if (result == 'sukses') {
-					$('#editUser').modal('hide');
+					$('#editKamar').modal('hide');
 					$.notify({
 						icon: "notification_important",
 						message: "Berhasil Edit Kamar"
@@ -316,7 +329,7 @@
 					});
 					location.reload();
 				}else{
-					$('#editUser').modal('hide');
+					$('#editKamar').modal('hide');
 					$.notify({
 						icon: "notification_important",
 						message: "Gagal Edit Kamar"
@@ -332,7 +345,7 @@
 				}
 			},
 			error : function (data) {
-				$('#editUser').modal('hide');
+				$('#editKamar').modal('hide');
 				$.notify(data, "error");
 			}
 		})

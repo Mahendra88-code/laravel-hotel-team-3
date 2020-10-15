@@ -3,6 +3,7 @@
 @section('show-layanan', 'active')
 @section('active-klayanan','active')
 @section('title-navbar','Layanan')
+@section('title','KATEGORI LAYANAN')
 @section('content')
 <div class="container-fluid">
 	<div class="row">

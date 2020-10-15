@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use \Carbon\Carbon;
 
 class TransaksiKamarController extends Controller
 {
@@ -28,7 +27,7 @@ class TransaksiKamarController extends Controller
 		->sum('total_biaya_kamar');
 
 		echo "
-		<table id='datatables' class='table table-hover table-bordered'>
+		<table id='datatables' class='table table-hover table-bordered table-striped'>
 		<thead>
 		<tr>
 		<th>#</th>
@@ -57,6 +56,5 @@ class TransaksiKamarController extends Controller
 
 		<h2>Total Pendapatan : <strong> Rp. ".number_format($total, 2, ',', '.')." </strong></h2>
 		";
-
 	}
 }

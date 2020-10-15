@@ -9,9 +9,9 @@
   }
 
   .form-control, .is-focused .form-control {
-    background-image: -webkit-linear-gradient(bottom, #fd9f07 2px, rgba(156, 39, 176, 0) 2px), -webkit-linear-gradient(bottom, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
-    background-image: -o-linear-gradient(bottom, #fd9f07 2px, rgba(156, 39, 176, 0) 2px), -o-linear-gradient(bottom, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
-    background-image: linear-gradient(to top, #fd9f07 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+    background-image: -webkit-linear-gradient(bottom, #4caf50 2px, rgba(156, 39, 176, 0) 2px), -webkit-linear-gradient(bottom, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+    background-image: -o-linear-gradient(bottom, #4caf50 2px, rgba(156, 39, 176, 0) 2px), -o-linear-gradient(bottom, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+    background-image: linear-gradient(to top, #4caf50 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
   }
 
   .bx-a{
@@ -134,22 +134,22 @@
   .pagination > li > span:focus,
   .pagination > li > span:hover
   {
-    color: orange;
-    background-color: orange;
-    border-color: orange;
+    color: purple;
+    background-color: purple;
+    border-color: purple;
   }
 
   .pagination > .active > a
   {
     color: white;
-    background-color: orange !Important;
-    border: solid 1px orange !Important;
+    background-color: purple !Important;
+    border: solid 1px purple !Important;
   }
 
   .pagination > .active > a:hover
   {
-    background-color: orange !Important;
-    border: solid 1px orange;
+    background-color: purple !Important;
+    border: solid 1px purple;
   }
 
   .mt-k{

@@ -3,6 +3,7 @@
 @section('show-transaksi', 'active')
 @section('active-transkamar','active')
 @section('title-navbar','Laporan')
+@section('title','TRANSAKSI KAMAR')
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -12,15 +13,15 @@
 					<div class="card-icon">
 						<i class="material-icons">assignment</i>
 					</div>
-					<h4 class="card-title">Kategori Kamar</h4>
+					<h4 class="card-title">Transaksi Kamar</h4>
 				</div>
 				<div class="card-body ">
 					<div class="row">
 						<div class="col-md-3">
-							<input class="form-control" type="date" placeholder="Dari Tanggal" name="dari_tanggal" id="dari_tanggal"  autocomplete="off">
+							<input class="form-control datepicker" type="text" placeholder="Dari Tanggal" name="dari_tanggal" id="dari_tanggal"  autocomplete="off">
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" type="date" placeholder="Sampai Tanggal" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
+							<input class="form-control datepicker" type="text" placeholder="Sampai Tanggal" name="sampai_tanggal" id="sampai_tanggal" autocomplete="off">
 						</div>
 						<div class="col-md-3">
 							<button onclick="getTanggal()" class="btn btn-success"> Lihat Laporan </button>
